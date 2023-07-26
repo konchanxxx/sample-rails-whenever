@@ -1,24 +1,49 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+gem whenever のサンプルアプリケーション
 
-Things you may want to cover:
+# Command
 
-* Ruby version
+```sh
+# タスク更新
+$ make update
 
-* System dependencies
+# タスク削除
+$ make clear
 
-* Configuration
+# タスク確認
+$ make list
+```
 
-* Database creation
+# Usage
 
-* Database initialization
+つまづきポイントとその解消方法について記載
 
-* How to run the test suite
+1. 以下のエラーが出たのでgemを更新
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+Could not find date-3.3.3 in any of the sources
+Run `bundle install` to install missing gems.
+```
 
-* Deployment instructions
+```sh
+bundle update date
+```
 
-* ...
+2. zsh環境では動作しないので修正する必要がある
+
+bashで実行してrbenvなどの設定が読み込まれなかったりするのでzshが設定されている場合はzshで実行するようにschedule.rbを変更する
+```rb
+...
+# ジョブを実行するシェルを環境に合わせて変更する
+set :job_template, "#{ENV['SHELL']} -l -c ':job'"
+...
+```
+
+~/.zshrcでもrbenvを初期化するようにしておく
+```sh
+...
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh)"
+...
+```
