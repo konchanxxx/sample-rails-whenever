@@ -22,3 +22,17 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# Usage
+
+以下のエラーが出たのでgemを更新
+
+```
+Could not find date-3.3.3 in any of the sources
+Run `bundle install` to install missing gems.
+```
+
+```sh
+bundle update date
+```
+
