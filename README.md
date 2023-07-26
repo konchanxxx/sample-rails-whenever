@@ -35,12 +35,8 @@ bundle update date
 bashで実行してrbenvなどの設定が読み込まれなかったりするのでzshが設定されている場合はzshで実行するようにschedule.rbを変更する
 ```rb
 ...
-# zshが設定されている場合はSHELLをzshにする
-if ENV['SHELL'].include?('zsh')
-  env :SHELL, '/bin/zsh'
-elsif
-  env :SHELL, '/bin/bash'
-end
+# SHELLを実行環境で利用しているものを指定するようにする
+env :SHELL, ENV['SHELL'] || '/bin/bash'
 ...
 ```
 
